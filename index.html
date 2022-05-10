@@ -1,17 +1,12 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-      crossorigin="anonymous"
-    />
+    <link href="./public/css/main.css" rel="stylesheet" type="text/css" />
+
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
-    <link href="./public/css/main.css" rel="stylesheet" type="text/css" />
 
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -23,89 +18,102 @@
   </head>
   <body>
     <header>
-      <a href="index.html"
-        ><img src="assets/images/hat.svg" class="logo" alt="" />
+      <a href="index.html" class="text-decoration-none"
+        ><img src="assets/images/hat.svg" class="brand" alt="" />
         <h1>Les petits plats</h1>
       </a>
     </header>
-
-    <nav class="navbar navbar-light bg-light">
-      <form class="form-inline w-100">
-        <input
-          class="form-control w-100"
-          id="main-search"
-          type="search"
-          placeholder="Rechercher une recette"
-          aria-label="Search"
-        />
-        <button class="search-icon btn my-2 my-sm-0" type="submit">
-          <span class="material-icons-outlined"> search </span>
-        </button>
-      </form>
-    </nav>
-
-    <form>
-      <div class="form-group">
-        <label for="main-search">Recherche</label>
-        <input
-          type="text"
-          class="form-control"
-          id="main-search"
-          placeholder="Rechercher une recette"
-        />
+    <main>
+      <!-- MAIN SEARCH  -->
+      <div class="input-group mb-3">
+        <div class="container-fluid px-0 d-flex">
+          <input
+            type="text"
+            class="form-control-lg bg-light w-100 border-0 p-4"
+            id="main-search"
+            placeholder="Rechercher une recette"
+            aria-label="Rechercher une recette"
+            aria-describedby="basic-addon2"
+          />
+          <div class="input-group-append">
+            <button class="btn bg-light border-0 h-100" type="button">
+              <span class="material-icons"> search </span>
+            </button>
+          </div>
+        </div>
       </div>
 
-      <div class="form-group">
-        <label for="ingredient-search">Ingredients</label>
-        <input
-          type="text"
-          class="form-control"
-          id="ingredient-search"
-          placeholder="Ingredients"
-        />
+      <div class="dropdowns row mb-5">
+        <!-- INGREDIENT SEARCH  -->
+
+        <div class="col-2">
+          <div class="dropdown ingredient container p-0">
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control"
+                id="ingredient-search"
+                placeholder="Ingredients"
+                aria-label=""
+              />
+            </div>
+            <div
+              class="keywords ingredient-keywords"
+              data-keywords="ingredient"
+            ></div>
+          </div>
+        </div>
+
+        <!-- APPLIANCE SEARCH  -->
+        <div class="col-2">
+          <div class="dropdown appliance container p-0">
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control"
+                id="appliance-search"
+                placeholder="Appareils"
+                aria-label=""
+              />
+            </div>
+            <div
+              class="keywords appliance-keywords"
+              data-keywords="appliance"
+            ></div>
+          </div>
+        </div>
+
+        <!-- USTENSILS SEARCH  -->
+        <div class="col-2">
+          <div class="dropdown ustensils container p-0">
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control"
+                id="ustensils-search"
+                placeholder="Ustensiles "
+                aria-label=""
+              />
+            </div>
+            <div
+              class="keywords ustensils-keywords"
+              data-keywords="ustensils"
+            ></div>
+          </div>
+        </div>
       </div>
 
-      <div class="form-group">
-        <label for="appliance-search">Appareils</label>
-        <input
-          type="text"
-          class="form-control"
-          id="appliance-search"
-          placeholder="Appareils"
-        />
-      </div>
-
-      <div class="form-group">
-        <label for="ustensils-search">Ustensiles</label>
-        <input
-          type="text"
-          class="form-control"
-          id="ustensils-search"
-          placeholder="Ustensiles"
-        />
-      </div>
-    </form>
-
-    <div class="search-results"></div>
+      <div
+        class="search-results row row-cols-1 row-cols-md-3 g-4  "
+      ></div>
+    </main>
 
     <script src="data/recipes.js"></script>
     <script src="scripts/base/base.js"></script>
-    <script src="scripts/pages/index.js"></script>
 
-    <script
-      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-      crossorigin="anonymous"
-    ></script>
+    <script src="scripts/utils/search.js"></script>
+    <script src="scripts/utils/dropdown.js"></script>
+    <script src="scripts/utils/results.js"></script>
+    <script src="scripts/pages/index.js"></script>
   </body>
 </html>

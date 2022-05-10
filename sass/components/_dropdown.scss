@@ -1,0 +1,46 @@
+.dropdown {
+  color: white;
+  .input-group {
+    input {
+      color: white;
+    }
+  }
+}
+
+.ingredient {
+  background-color: $color-blue;
+
+  .input-group {
+    input {
+      background-color: $color-blue;
+    }
+  }
+}
+
+.appliance {
+  background-color: $color-green;
+
+  .input-group {
+    input {
+      background-color: $color-green;
+    }
+  }
+}
+
+.ustensils {
+  background-color: $color-red;
+
+  .input-group {
+    input {
+      background-color: $color-red;
+    }
+  }
+}
+
+.keywords {
+  display: none;
+}
+
+.dropdown:focus-within > .input-group + .keywords {
+  display: block;
+}

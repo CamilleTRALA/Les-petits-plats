@@ -1,0 +1,84 @@
+const resultsDOM = document.querySelector(".search-results");
+
+mainSearch.addEventListener("input", displayResults);
+ingredientSearch.addEventListener("input", displayResults);
+applianceSearch.addEventListener("input", displayResults);
+ustensilsSearch.addEventListener("input", displayResults);
+
+function displayResults() {
+  console.log("displayResults");
+  console.log(results);
+
+  while (resultsDOM.firstChild) {
+    resultsDOM.removeChild(resultsDOM.firstChild);
+  }
+
+  results.forEach((element) => {
+    const colDOM = document.createElement("div");
+    const row1DOM = document.createElement("div");
+    const row2DOM = document.createElement("div");
+    const cardDOM = document.createElement("div");
+    const imgDOM = document.createElement("img");
+    const cardBodyDOM = document.createElement("div");
+    const cardTitleDOM = document.createElement("div");
+    const cardTimeDOM = document.createElement("div");
+    const cardIngredientsDOM = ingredientsDOM(element.ingredients);
+    const cardDescriptionDOM = document.createElement("div");
+
+    colDOM.setAttribute("class", "col");
+    row1DOM.setAttribute("class", "row mb-2");
+    row2DOM.setAttribute("class", "row");
+    cardDOM.setAttribute("class", "card");
+    imgDOM.setAttribute("class", "card-img-top");
+    imgDOM.setAttribute("alt", "");
+    cardBodyDOM.setAttribute("class", "card-body");
+    cardTitleDOM.setAttribute("class", "card-title col");
+    cardTitleDOM.textContent = element.name;
+    cardTimeDOM.setAttribute("class", "card-text card-time col-auto");
+    cardTimeDOM.textContent = element.time + " min";
+    cardIngredientsDOM.setAttribute("class", "card-text card-ingredients col");
+    cardDescriptionDOM.setAttribute("class", "card-text card-description overflow-ellipsis col");
+    cardDescriptionDOM.textContent = element.description;
+
+    row1DOM.appendChild(cardTitleDOM);
+    row1DOM.appendChild(cardTimeDOM);
+    row2DOM.appendChild(cardIngredientsDOM);
+    row2DOM.appendChild(cardDescriptionDOM);
+
+    cardBodyDOM.appendChild(row1DOM);
+    cardBodyDOM.appendChild(row2DOM);
+
+    cardDOM.appendChild(imgDOM);
+    cardDOM.appendChild(cardBodyDOM);
+    colDOM.appendChild(cardDOM);
+    resultsDOM.appendChild(colDOM);
+  });
+}
+
+function ingredientsDOM(ingredients) {
+  const ingredientsDOM = document.createElement("div");
+
+  ingredients.forEach((element) => {
+    const ingredientDOM = document.createElement("p");
+
+    if (element.ingredient) {
+      const ingredient = document.createElement("strong");
+      ingredient.textContent = element.ingredient;
+      ingredientDOM.appendChild(ingredient);
+    }
+    if (element.quantity) {
+      const quantity = document.createElement("span");
+      quantity.textContent = ": " + element.quantity;
+      ingredientDOM.appendChild(quantity);
+    }
+    if (element.unit) {
+      const unit = document.createElement("span");
+      unit.textContent = element.unit;
+      ingredientDOM.appendChild(unit);
+    }
+
+    ingredientDOM.setAttribute("class", "mb-0");
+    ingredientsDOM.appendChild(ingredientDOM);
+  });
+  return ingredientsDOM;
+}

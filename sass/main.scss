@@ -1,3 +1,13 @@
+@import "./utils/variables";
+@import "./utils/mixins";
+
+@import "./bootstrap/bootstrap";
+
 @import "./base/reset";
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans&family=Roboto&family=Shrikhand&display=swap");
+
 @import "./layouts/homepage";
 @import "./components/search-bar";
+@import "./components/dropdown";
+
+@import "../node_modules/bootstrap/scss/bootstrap";
