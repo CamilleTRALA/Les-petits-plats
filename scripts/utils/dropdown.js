@@ -6,10 +6,6 @@ const ingredientDropdownDOM = document.querySelector(".ingredient");
 const applianceDropdownDOM = document.querySelector(".appliance");
 const ustensilsDropdownDOM = document.querySelector(".ustensils");
 
-ingredientSearch.addEventListener("input", ingredientDropdown);
-applianceSearch.addEventListener("input", applianceDropdown);
-ustensilsSearch.addEventListener("input", ustensilsDropdown);
-
 const applianceKeywordsDOM = document.querySelector(".appliance-keywords");
 
 function ingredientDropdown() {
@@ -82,25 +78,28 @@ function ustensilsKeywordsSearch() {
 }
 
 function displayKeywords(dropdown) {
-  console.log("displayKeywords");
-  console.log(dropdown.querySelector(".keywords"));
-
   KeywordsDOM = dropdown.querySelector(".keywords");
 
   while (KeywordsDOM.firstChild) {
     KeywordsDOM.removeChild(KeywordsDOM.firstChild);
   }
 
-  if (KeywordsDOM.dataset.keywords === "ingredient") {
-    keywords = ingredientKeywords;
-  } else if (KeywordsDOM.dataset.keywords === "appliance") {
-    keywords = applianceKeywords;
-  } else if (KeywordsDOM.dataset.keywords === "ustensils") {
-    keywords = ustensilsKeywords;
+  switch (KeywordsDOM.dataset.keywords) {
+    case "ingredient":
+      keywords = ingredientKeywords;
+      break;
+    case "appliance":
+      keywords = applianceKeywords;
+      break;
+    case "ustensils":
+      keywords = ustensilsKeywords;
+      break;
   }
 
+  console.log("KeywordsDOM", KeywordsDOM.dataset.keywords);
+
   keywords.forEach((element) => {
-    const keyword = document.createElement("div");
+    const keyword = document.createElement("li");
     keyword.addEventListener("click", function () {
       applianceSearch.value = element;
     });

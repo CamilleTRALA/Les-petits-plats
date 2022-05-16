@@ -32,6 +32,7 @@
             class="form-control-lg bg-light w-100 border-0 p-4"
             id="main-search"
             placeholder="Rechercher une recette"
+            autocomplete="off"
             aria-label="Rechercher une recette"
             aria-describedby="basic-addon2"
           />
@@ -46,21 +47,22 @@
       <div class="dropdowns row mb-5">
         <!-- INGREDIENT SEARCH  -->
 
-        <div class="col-2">
-          <div class="dropdown ingredient container p-0">
-            <div class="input-group">
+        <div class="col-2 ">
+          <div class="dropdown ingredient container p-0 overflow-visible">
+            <div class="input-group dropdown-toggle">
               <input
                 type="text"
                 class="form-control"
                 id="ingredient-search"
                 placeholder="Ingredients"
+                autocomplete="off"
                 aria-label=""
               />
             </div>
-            <div
-              class="keywords ingredient-keywords"
+            <ul
+              class="dropdown-menu keywords ingredient-keywords "
               data-keywords="ingredient"
-            ></div>
+            ></ul>
           </div>
         </div>
 
@@ -73,6 +75,7 @@
                 class="form-control"
                 id="appliance-search"
                 placeholder="Appareils"
+                autocomplete="off"
                 aria-label=""
               />
             </div>
@@ -92,6 +95,7 @@
                 class="form-control"
                 id="ustensils-search"
                 placeholder="Ustensiles "
+                autocomplete="off"
                 aria-label=""
               />
             </div>
@@ -103,9 +107,7 @@
         </div>
       </div>
 
-      <div
-        class="search-results row row-cols-1 row-cols-md-3 g-4  "
-      ></div>
+      <div class="search-results row row-cols-1 row-cols-md-3 g-4"></div>
     </main>
 
     <script src="data/recipes.js"></script>

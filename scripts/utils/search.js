@@ -5,14 +5,6 @@ const applianceSearch = document.querySelector("#appliance-search");
 const ustensilsSearch = document.querySelector("#ustensils-search");
 const searchResults = document.querySelector("#search-results");
 
-mainSearch.addEventListener("input", function (e) {
-  console.log(mainSearch.value);
-});
-mainSearch.addEventListener("input", inputSearch);
-ingredientSearch.addEventListener("input", inputSearch);
-applianceSearch.addEventListener("input", inputSearch);
-ustensilsSearch.addEventListener("input", inputSearch);
-
 function inputSearch() {
   search(
     recipes,
@@ -42,7 +34,6 @@ function search(
     "'"
   );
 
-
   results = recipes.filter(function (element, index, array) {
     if (
       searchMain(mainValue, element) &&
@@ -57,6 +48,15 @@ function search(
   });
 }
 
+function stringMinLength(string, minLength) {
+
+  if (string.length < minLength) {
+    string = "";
+  }
+  console.log(string.length, minLength, string);
+  return string;
+}
+
 function searchTitle(searchString, recipe) {
   return recipe.name.toLowerCase().includes(searchString);
 }
@@ -66,11 +66,19 @@ function searchDescription(searchString, recipe) {
 }
 
 function searchMain(searchString, recipe) {
-  return (
-    searchTitle(searchString, recipe) ||
-    searchIngredients(searchString, recipe) ||
-    searchDescription(searchString, recipe)
-  );
+  searchString = stringMinLength(searchString, 3);
+
+  let result = true;
+  const subStrings = searchString.split(/[, ]+/);
+  subStrings.forEach((element) => {
+    result =
+      result &&
+      (searchTitle(element, recipe) ||
+        searchIngredients(element, recipe) ||
+        searchDescription(element, recipe));
+  });
+
+  return result;
 }
 
 function searchUstensils(searchString, recipe) {

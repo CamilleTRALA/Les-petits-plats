@@ -1,4 +1,5 @@
 body {
+  font-family: lato;
   display: flex;
   flex-direction: column;
 
@@ -49,5 +50,39 @@ nav {
 
       line-clamp: 5 "… (continued on next page)";
     }
+  }
+}
+
+.card {
+  height: 10vw;
+
+  .card-img-top {
+    height: 15vw;
+    color: $color-bg-dark;
+    background-color: $color-bg-dark;
+  }
+}
+
+.card-body {
+  .card-time::before {
+    content: url(/assets/icons/clock.png);
+    position: relative;
+    top: 3px;
+    right: 4px;
+  }
+
+  .card-title,
+  .card-time {
+    font-size: 18px;
+    line-height: 18px;
+  }
+
+  .card-ingredients,
+  .card-description {
+    font-size: 12px;
+  }
+
+  .card-description {
+    font-family: Roboto;
   }
 }

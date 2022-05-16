@@ -1,9 +1,6 @@
 const resultsDOM = document.querySelector(".search-results");
 
-mainSearch.addEventListener("input", displayResults);
-ingredientSearch.addEventListener("input", displayResults);
-applianceSearch.addEventListener("input", displayResults);
-ustensilsSearch.addEventListener("input", displayResults);
+
 
 function displayResults() {
   console.log("displayResults");
@@ -21,9 +18,9 @@ function displayResults() {
     const imgDOM = document.createElement("img");
     const cardBodyDOM = document.createElement("div");
     const cardTitleDOM = document.createElement("div");
-    const cardTimeDOM = document.createElement("div");
+    const cardTimeDOM = document.createElement("strong");
     const cardIngredientsDOM = ingredientsDOM(element.ingredients);
-    const cardDescriptionDOM = document.createElement("div");
+    const cardDescriptionDOM = descriptionDOM(element.description);
 
     colDOM.setAttribute("class", "col");
     row1DOM.setAttribute("class", "row mb-2");
@@ -37,8 +34,7 @@ function displayResults() {
     cardTimeDOM.setAttribute("class", "card-text card-time col-auto");
     cardTimeDOM.textContent = element.time + " min";
     cardIngredientsDOM.setAttribute("class", "card-text card-ingredients col");
-    cardDescriptionDOM.setAttribute("class", "card-text card-description overflow-ellipsis col");
-    cardDescriptionDOM.textContent = element.description;
+    cardDescriptionDOM.setAttribute("class", "card-text card-description col");
 
     row1DOM.appendChild(cardTitleDOM);
     row1DOM.appendChild(cardTimeDOM);
@@ -82,3 +78,30 @@ function ingredientsDOM(ingredients) {
   });
   return ingredientsDOM;
 }
+
+function descriptionDOM(description) {
+  const descriptionDOM = document.createElement("div");
+  const descriptionLength = 170;
+
+  if (description.length > descriptionLength) {
+    descriptionDOM.textContent =
+      CropString(description, descriptionLength) + "...";
+  } else {
+    descriptionDOM.textContent = description;
+  }
+
+  return descriptionDOM;
+
+  function CropString(string, maxLength) {
+    string = string.substring(0, maxLength);
+    const lastIndexOfSpace = string.lastIndexOf(" ");
+    if (lastIndexOfSpace === -1) {
+      return string;
+    }
+    return string.substring(0, lastIndexOfSpace);
+  }
+}
+
+
+
+
