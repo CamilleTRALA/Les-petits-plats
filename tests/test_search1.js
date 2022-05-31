@@ -1,19 +1,8 @@
 let results = recipes;
-const mainSearch = document.querySelector("#main-search");
-const ingredientSearch = document.querySelector("#ingredient-search");
-const applianceSearch = document.querySelector("#appliance-search");
-const ustensilsSearch = document.querySelector("#ustensils-search");
-const searchResults = document.querySelector("#search-results");
-
-function inputSearch() {
-  search(
-    recipes,
-    mainSearch.value,
-    ingredientSearch.value,
-    applianceSearch.value,
-    ustensilsSearch.value
-  );
-}
+const mainValue = "citron saladier cuillère";
+const ingredientsValue = "";
+const applianceValue = "";
+const ustensilsValue = "";
 
 function search(
   recipes,
@@ -98,3 +87,7 @@ function searchIngredients(searchString, recipe) {
     ) || searchString === ""
   );
 }
+
+search(recipes, mainValue, ingredientsValue, applianceValue, ustensilsValue);
+console.log(results);
+
