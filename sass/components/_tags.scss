@@ -1,0 +1,15 @@
+.tags {
+    display: flex;
+}
+
+.tag[data-category="ingredient"] {
+  background-color: $color-blue;
+}
+.tag[data-category="appliance"] {
+  background-color: $color-green;
+}
+.tag[data-category="ustencil"] {
+  background-color: $color-red;
+}
+
+.tag{}

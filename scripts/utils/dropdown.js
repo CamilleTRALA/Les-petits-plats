@@ -2,11 +2,8 @@ let ingredientKeywords = [];
 let applianceKeywords = [];
 let ustensilsKeywords = [];
 
-const ingredientDropdownDOM = document.querySelector(".ingredient");
-const applianceDropdownDOM = document.querySelector(".appliance");
-const ustensilsDropdownDOM = document.querySelector(".ustensils");
-
 const applianceKeywordsDOM = document.querySelector(".appliance-keywords");
+const expandArrowsDOM = document.querySelectorAll(".expand-arrow ");
 
 function ingredientDropdown() {
   ingredientKeywordsSearch();
@@ -84,28 +81,90 @@ function displayKeywords(dropdown) {
     KeywordsDOM.removeChild(KeywordsDOM.firstChild);
   }
 
+  ingredientKeywordsSearch();
+  applianceKeywordsSearch();
+  ustensilsKeywordsSearch();
+
   switch (KeywordsDOM.dataset.keywords) {
     case "ingredient":
       keywords = ingredientKeywords;
+
       break;
     case "appliance":
       keywords = applianceKeywords;
+
       break;
     case "ustensils":
       keywords = ustensilsKeywords;
+
       break;
   }
 
   console.log("KeywordsDOM", KeywordsDOM.dataset.keywords);
 
-  keywords.forEach((element) => {
-    const keyword = document.createElement("li");
-    keyword.addEventListener("click", function () {
-      applianceSearch.value = element;
+  const input = dropdown.querySelector("input");
+
+  if (keywords.length < 11) {
+    KeywordsDOM.dataset.cols = "1";
+    KeywordsDOM.classList.remove("row", "row-cols-1", "row-cols-md-3", "g-2");
+
+    keywords.forEach((element) => {
+      const keyword = document.createElement("div");
+      keyword.addEventListener("click", function () {
+        tagAdd(keyword.textContent, keyword.parentNode.dataset.keywords);
+        keyword.parentNode.parentNode.input.value = element;
+      });
+      keyword.textContent = element;
+      KeywordsDOM.appendChild(keyword);
     });
-    keyword.textContent = element;
-    KeywordsDOM.appendChild(keyword);
-  });
+  } else {
+    KeywordsDOM.dataset.cols = "3";
+    KeywordsDOM.classList.add("row", "row-cols-1", "row-cols-md-3", "g-2");
+
+    keywords.forEach((element) => {
+      const keyword = document.createElement("div");
+      keyword.addEventListener("click", function () {
+        tagAdd(keyword.textContent, keyword.parentNode.dataset.keywords);
+        console.log("TEST", input);
+
+        input.value = element;
+      });
+      keyword.textContent = element;
+      KeywordsDOM.appendChild(keyword);
+    });
+  }
 }
 
+function expandDropdown() {}
 
+function dropdownFocusIn(event) {
+  target = event.target;
+  while (!target.classList.contains("ingredient-dropdown")) {
+    target = target.parentNode;
+  }
+
+  console.log("target", target);
+
+  keywords = target.querySelector(".keywords");
+
+  if (keywords.dataset.cols === "3") {
+    parentNode = target.parentNode;
+    parentNode.classList.remove("col-2");
+    parentNode.classList.add("col-8");
+  }
+}
+
+function dropdownFocusOut(event) {
+  target = event.target;
+  while (!target.classList.contains("ingredient-dropdown")) {
+    target = target.parentNode;
+  }
+
+  keywords = target.querySelector(".keywords");
+
+  if (keywords.dataset.cols === "3") {
+    parentNode = target.parentNode;
+    parentNode.classList.remove("col-8");
+    parentNode.classList.add("col-2");
+  }
+}

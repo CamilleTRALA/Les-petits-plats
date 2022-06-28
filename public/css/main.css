@@ -151,40 +151,129 @@ nav {
   font-family: Roboto;
 }
 
-.dropdown {
+.dropdowns {
+  color: white;
+  max-height: 30px;
+}
+
+.dropdowns .dropdown .input-group input {
   color: white;
 }
 
-.dropdown .input-group input {
-  color: white;
-}
-
-.ingredient {
+.dropdowns .dropdown .input-group .expand-arrow {
   background-color: #3282f7;
+  border-style: none;
+  border-radius: 0.25rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.dropdowns .dropdown .input-group .expand-arrow button {
+  color: white;
 }
 
 .ingredient .input-group input {
   background-color: #3282f7;
+  border-style: none;
 }
 
-.appliance {
-  background-color: #68d9a4;
+.ingredient .keywords {
+  background-color: #3282f7;
+  position: relative;
+  top: -5px;
+  border-style: none;
+}
+
+.ingredient .keywords:focus {
+  background-color: #3282f7;
 }
 
 .appliance .input-group input {
   background-color: #68d9a4;
 }
 
-.ustensils {
-  background-color: #ed6454;
+.appliance .keywords {
+  background-color: #68d9a4;
 }
 
 .ustensils .input-group input {
   background-color: #ed6454;
 }
 
+.ustensils .keywords {
+  background-color: #ed6454;
+}
+
+.dropdown:focus-within > .keywords {
+  display: block !important;
+}
+
+.form-control {
+  border-style: none !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
+.form-control:focus {
+  border-style: none !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
+.ingredient-input input {
+  background-color: #3282f7;
+  border-style: none;
+}
+
 .keywords {
-  display: none;
+  background-color: #3282f7;
+  position: relative;
+  top: -5px;
+  border-style: none;
+}
+
+.keywords:focus {
+  background-color: #3282f7;
+}
+
+.kaywords {
+  display: none !important;
+  border-radius: 0.25rem;
+}
+
+.keywords {
+  position: absolute;
+  display: none !important;
+  z-index: 99;
+}
+
+.input:focus-within + .keywords {
+  display: block !important;
+}
+
+.tags {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.tag[data-category="ingredient"] {
+  background-color: #3282f7;
+}
+
+.tag[data-category="appliance"] {
+  background-color: #68d9a4;
+}
+
+.tag[data-category="ustencil"] {
+  background-color: #ed6454;
 }
 
 /*!

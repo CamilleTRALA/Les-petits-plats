@@ -6,10 +6,11 @@ const ustensilsSearch = document.querySelector("#ustensils-search");
 const searchResults = document.querySelector("#search-results");
 
 function inputSearch() {
+  let [ingredientsValue, appliances, ustensils] = readTags();
   search(
     recipes,
     mainSearch.value,
-    ingredientSearch.value,
+    ingredientsValue,
     applianceSearch.value,
     ustensilsSearch.value
   );
@@ -34,12 +35,20 @@ function search(
     "'"
   );
 
+  let ingredientFound = true;
+
+  ingredientsValue.forEach((e) => {
+    if (!searchIngredients(e.toLowerCase(), element)) {
+      ingredientFound = false;
+    }
+  });
+
   results = recipes.filter(function (element, index, array) {
     if (
-      searchMain(mainValue, element) &&
-      searchUstensils(ustensilsValue, element) &&
-      searchAppliance(applianceValue, element) &&
-      searchIngredients(ingredientsValue, element)
+      searchMain(mainValue.toLowerCase(), element) &&
+      searchUstensils(ustensilsValue.toLowerCase(), element) &&
+      searchAppliance(applianceValue.toLowerCase(), element) &&
+      ingredientFound
     ) {
       return true;
     } else {
@@ -98,3 +107,26 @@ function searchIngredients(searchString, recipe) {
     ) || searchString === ""
   );
 }
+
+function readTags() {
+  let ingredientsValue = [];
+  let applianceValue = [];
+  let ustensilsValue = [];
+  const tagsDOM = document.querySelectorAll(".tag");
+
+  tagsDOM.forEach((e) => {
+    if ((e.dataset.category = "ingredient")) {
+      ingredientsValue.push(e.textContent);
+    }
+    if ((e.dataset.category = "appliance")) {
+      applianceValue.push(e.textContent);
+    }
+    if ((e.dataset.category = "ustensil")) {
+      ustensilsValue.push(e.textContent);
+    }
+  });
+
+  return [ingredientsValue, applianceValue, ustensilsValue];
+}
+
+
