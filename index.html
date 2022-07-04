@@ -47,6 +47,7 @@
             placeholder="Rechercher une recette"
             aria-label="Rechercher une recette"
             aria-describedby="basic-addon2"
+            autocomplete="off"
           />
           <div class="input-group-append">
             <button class="btn bg-light border-0 h-100" type="button">
@@ -59,36 +60,10 @@
       <div class="tags container mb-5"></div>
 
       <div class="dropdowns row mb-5">
-        <!-- INGREDIENTS SEARCH  -->
-        <!-- 
-        <div class="dropdown ingredient col-2">
-          <div class="input-group">
-            <input
-              type="text"
-              class="form-control"
-              id="ingredient-search"
-              placeholder="Ingredients"
-              aria-label=""
-            />
-
-            <div class="expand-arrow input-group-append">
-              <button class="btn material-symbols-outlined px-2" type="button">
-                expand_more
-              </button>
-            </div>
-          </div>
-
-          <ul
-            class="dropdown-menu keywords ingredient-keywords form-control"
-            data-keywords="ingredient"
-            tabindex="0"
-          ></ul>
-        </div> -->
-
-        <!-- TEST  -->
+        <!-- INGREDIENT SEARCH  -->
         <div class="col-2">
           <div class="dropdown ingredient ingredient-dropdown">
-            <div class="input ingredient-input">
+            <div class="input">
               <div class="input-group col-2">
                 <input
                   type="text"
@@ -96,6 +71,7 @@
                   id="ingredient-search"
                   placeholder="Ingredients"
                   aria-label=""
+                  autocomplete="off"
                 />
 
                 <div class="expand-arrow input-group-append">
@@ -110,7 +86,7 @@
             </div>
 
             <div
-              class="keywords row row-cols-1 row-cols-md-3 g-2"
+              class="keywords row row-cols-1 row-cols-md-3 g-2 w-100"
               data-keywords="ingredient"
               data-cols="1"
               tabindex="0"
@@ -120,40 +96,65 @@
 
         <!-- APPLIANCE SEARCH  -->
         <div class="col-2">
-          <div class="dropdown appliance container p-0">
-            <div class="input-group">
-              <input
-                type="text"
-                class="form-control"
-                id="appliance-search"
-                placeholder="Appareils"
-                autocomplete="off"
-                aria-label=""
-              />
+          <div class="dropdown appliance appliance-dropdown">
+            <div class="input">
+              <div class="input-group col-2">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="appliance-search"
+                  placeholder="Appareils"
+                  aria-label=""
+                  autocomplete="off"
+                />
+
+                <div class="expand-arrow input-group-append">
+                  <button
+                    class="btn material-symbols-outlined px-2"
+                    type="button"
+                  >
+                    expand_more
+                  </button>
+                </div>
+              </div>
             </div>
             <div
-              class="keywords appliance-keywords"
+              class="keywords row row-cols-1 row-cols-md-3 g-2 w-100"
               data-keywords="appliance"
+              data-cols="1"
+              tabindex="0"
             ></div>
           </div>
         </div>
 
         <!-- USTENSILS SEARCH  -->
         <div class="col-2">
-          <div class="dropdown ustensils container p-0">
-            <div class="input-group">
-              <input
-                type="text"
-                class="form-control"
-                id="ustensils-search"
-                placeholder="Ustensiles "
-                autocomplete="off"
-                aria-label=""
-              />
+          <div class="dropdown ustensils ustensils-dropdown">
+            <div class="input">
+              <div class="input-group col-2">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="ustensils-search"
+                  placeholder="Ustensiles "
+                  aria-label=""
+                  autocomplete="off"
+                />
+                <div class="expand-arrow input-group-append">
+                  <button
+                    class="btn material-symbols-outlined px-2"
+                    type="button"
+                  >
+                    expand_more
+                  </button>
+                </div>
+              </div>
             </div>
             <div
-              class="keywords ustensils-keywords"
+              class="keywords row row-cols-1 row-cols-md-3 g-2 w-100"
               data-keywords="ustensils"
+              data-cols="1"
+              tabindex="0"
             ></div>
           </div>
         </div>

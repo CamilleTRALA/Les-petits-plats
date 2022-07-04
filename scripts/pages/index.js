@@ -3,36 +3,16 @@ const applianceDropdownDOM = document.querySelector(".appliance.dropdown");
 const ustensilsDropdownDOM = document.querySelector(".ustensils.dropdown");
 
 mainSearch.addEventListener("input", mainSearchInputEvent);
-ingredientSearch.addEventListener("input", ingredientSearchInputEvent);
-applianceSearch.addEventListener("input", applianceSearchInputEvent);
-ustensilsSearch.addEventListener("input", ustensilsSearchInputEvent);
 
 function mainSearchInputEvent() {
-  inputSearch();
+  search();
   ingredientDropdown();
   applianceDropdown();
   ustensilsDropdown();
   displayResults();
 }
 
-function ingredientSearchInputEvent() {
-  inputSearch();
-  ingredientDropdown();
-  applianceDropdown();
-  ustensilsDropdown();
-  displayResults();
-}
-
-function applianceSearchInputEvent() {
-  inputSearch();
-  ingredientDropdown();
-  applianceDropdown();
-  ustensilsDropdown();
-  displayResults();
-}
-
-function ustensilsSearchInputEvent() {
-  inputSearch();
+function update() {
   ingredientDropdown();
   applianceDropdown();
   ustensilsDropdown();
@@ -45,9 +25,9 @@ async function init() {
   displayKeywords(applianceDropdownDOM);
   displayKeywords(ustensilsDropdownDOM);
 
-  ingredientDropdownDOM.addEventListener("focusin", dropdownFocusIn);
-  ingredientDropdownDOM.addEventListener("blur", dropdownFocusOut);
-  
+  dropdownFocusEvent();
+
+  dropdownInputEvent();
 }
 
 init();

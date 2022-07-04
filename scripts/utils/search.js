@@ -5,51 +5,13 @@ const applianceSearch = document.querySelector("#appliance-search");
 const ustensilsSearch = document.querySelector("#ustensils-search");
 const searchResults = document.querySelector("#search-results");
 
-function inputSearch() {
-  let [ingredientsValue, appliances, ustensils] = readTags();
-  search(
-    recipes,
-    mainSearch.value,
-    ingredientsValue,
-    applianceSearch.value,
-    ustensilsSearch.value
-  );
-}
+let ingredientsValue = [];
+let applianceValue = [];
+let ustensilsValue = [];
 
-function search(
-  recipes,
-  mainValue,
-  ingredientsValue,
-  applianceValue,
-  ustensilsValue
-) {
-  console.log(
-    "Search => main = '",
-    mainValue,
-    "' | ingredients = '",
-    ingredientsValue,
-    "' | appliance = '",
-    applianceValue,
-    "' | ustensils = '",
-    ustensilsValue,
-    "'"
-  );
-
-  let ingredientFound = true;
-
-  ingredientsValue.forEach((e) => {
-    if (!searchIngredients(e.toLowerCase(), element)) {
-      ingredientFound = false;
-    }
-  });
-
+function search() {
   results = recipes.filter(function (element, index, array) {
-    if (
-      searchMain(mainValue.toLowerCase(), element) &&
-      searchUstensils(ustensilsValue.toLowerCase(), element) &&
-      searchAppliance(applianceValue.toLowerCase(), element) &&
-      ingredientFound
-    ) {
+    if (searchMain(element) && searchTags(element)) {
       return true;
     } else {
       return false;
@@ -73,7 +35,8 @@ function searchDescription(searchString, recipe) {
   return recipe.description.toLowerCase().includes(searchString);
 }
 
-function searchMain(searchString, recipe) {
+function searchMain(recipe) {
+  searchString = mainSearch.value.toLocaleLowerCase();
   searchString = stringMinLength(searchString, 3);
 
   let result = true;
@@ -89,18 +52,8 @@ function searchMain(searchString, recipe) {
   return result;
 }
 
-function searchUstensils(searchString, recipe) {
-  return recipe.ustensils.find(
-    (element) =>
-      element.toLowerCase().includes(searchString) || searchString === ""
-  );
-}
-
-function searchAppliance(searchString, recipe) {
-  return recipe.appliance.toLowerCase().includes(searchString);
-}
-
 function searchIngredients(searchString, recipe) {
+  // console.log("searchIngredient", searchString, recipe);
   return (
     recipe.ingredients.find((element) =>
       element.ingredient.toLowerCase().includes(searchString)
@@ -108,25 +61,38 @@ function searchIngredients(searchString, recipe) {
   );
 }
 
-function readTags() {
-  let ingredientsValue = [];
-  let applianceValue = [];
-  let ustensilsValue = [];
-  const tagsDOM = document.querySelectorAll(".tag");
+function searchAppliance(searchString, recipe) {
+  console.log("searchAppliance", searchString, recipe);
+  return (
+    recipe.appliance.toLowerCase().includes(searchString) || searchString === ""
+  );
+}
 
-  tagsDOM.forEach((e) => {
-    if ((e.dataset.category = "ingredient")) {
-      ingredientsValue.push(e.textContent);
-    }
-    if ((e.dataset.category = "appliance")) {
-      applianceValue.push(e.textContent);
-    }
-    if ((e.dataset.category = "ustensil")) {
-      ustensilsValue.push(e.textContent);
-    }
-  });
-
-  return [ingredientsValue, applianceValue, ustensilsValue];
+function searchUstensils(searchString, recipe) {
+  // console.log("searchUstensils", searchString, recipe);
+  return (
+    recipe.ustensils.find((element) =>
+      element.toLowerCase().includes(searchString)
+    ) || searchString === ""
+  );
 }
 
 
+
+function searchTags(recipe) {
+  [ingredientsValue, applianceValue, ustensilsValue] = readTags();
+
+  console.log("searchTags", ingredientsValue, applianceValue, ustensilsValue);
+
+  if (
+    ingredientsValue.every((elem) => searchIngredients(elem, recipe)) &&
+    applianceValue.every((elem) => searchAppliance(elem, recipe)) &&
+    ustensilsValue.every((elem) => searchUstensils(elem, recipe))
+  ) {
+    return true;
+  } else {
+    return false;
+  }
+
+  return true;
+}

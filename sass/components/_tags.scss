@@ -1,5 +1,8 @@
 .tags {
-    display: flex;
+  display: flex;
+  gap: 20px;
+  margin: 20px 0px !important;
+  padding: 0 !important;
 }
 
 .tag[data-category="ingredient"] {
@@ -8,8 +11,20 @@
 .tag[data-category="appliance"] {
   background-color: $color-green;
 }
-.tag[data-category="ustencil"] {
+.tag[data-category="ustensils"] {
   background-color: $color-red;
 }
 
-.tag{}
+.tag {
+  padding: 5px 10px;
+  color: white;
+  font-size: 14px;
+  border-radius: 0.25rem;
+  @include flex-center;
+  gap: 20px;
+  .text {
+  }
+  .cancel {
+    font-size: 18px;
+  }
+}

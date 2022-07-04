@@ -156,12 +156,12 @@ nav {
   max-height: 30px;
 }
 
-.dropdowns .dropdown .input-group input {
+.dropdown .input-group input {
   color: white;
+  border-style: none;
 }
 
-.dropdowns .dropdown .input-group .expand-arrow {
-  background-color: #3282f7;
+.dropdown .input-group .expand-arrow {
   border-style: none;
   border-radius: 0.25rem;
   display: -webkit-box;
@@ -175,27 +175,27 @@ nav {
           align-items: center;
 }
 
-.dropdowns .dropdown .input-group .expand-arrow button {
+.dropdown .input-group .expand-arrow button {
   color: white;
 }
 
-.ingredient .input-group input {
+.ingredient .input-group * {
   background-color: #3282f7;
-  border-style: none;
+}
+
+.ingredient .input-group *:focus {
+  background-color: #3282f7;
 }
 
 .ingredient .keywords {
   background-color: #3282f7;
-  position: relative;
-  top: -5px;
-  border-style: none;
 }
 
-.ingredient .keywords:focus {
-  background-color: #3282f7;
+.appliance .input-group * {
+  background-color: #68d9a4;
 }
 
-.appliance .input-group input {
+.appliance .input-group *:focus {
   background-color: #68d9a4;
 }
 
@@ -203,7 +203,11 @@ nav {
   background-color: #68d9a4;
 }
 
-.ustensils .input-group input {
+.ustensils .input-group * {
+  background-color: #ed6454;
+}
+
+.ustensils .input-group *:focus {
   background-color: #ed6454;
 }
 
@@ -212,7 +216,9 @@ nav {
 }
 
 .dropdown:focus-within > .keywords {
-  display: block !important;
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
 }
 
 .form-control {
@@ -227,41 +233,27 @@ nav {
           box-shadow: none !important;
 }
 
-.ingredient-input input {
-  background-color: #3282f7;
-  border-style: none;
-}
-
 .keywords {
-  background-color: #3282f7;
-  position: relative;
-  top: -5px;
+  top: 40px;
+  left: 4px;
   border-style: none;
-}
-
-.keywords:focus {
-  background-color: #3282f7;
-}
-
-.kaywords {
   display: none !important;
   border-radius: 0.25rem;
-}
-
-.keywords {
   position: absolute;
-  display: none !important;
   z-index: 99;
 }
 
-.input:focus-within + .keywords {
-  display: block !important;
+.keywords > * {
+  margin: 0 !important;
 }
 
 .tags {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  gap: 20px;
+  margin: 20px 0px !important;
+  padding: 0 !important;
 }
 
 .tag[data-category="ingredient"] {
@@ -272,8 +264,29 @@ nav {
   background-color: #68d9a4;
 }
 
-.tag[data-category="ustencil"] {
+.tag[data-category="ustensils"] {
   background-color: #ed6454;
+}
+
+.tag {
+  padding: 5px 10px;
+  color: white;
+  font-size: 14px;
+  border-radius: 0.25rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 20px;
+}
+
+.tag .cancel {
+  font-size: 18px;
 }
 
 /*!

@@ -2,19 +2,16 @@ let ingredientKeywords = [];
 let applianceKeywords = [];
 let ustensilsKeywords = [];
 
-const applianceKeywordsDOM = document.querySelector(".appliance-keywords");
+const appliancekeywordsDOM = document.querySelector(".appliance-keywords");
 const expandArrowsDOM = document.querySelectorAll(".expand-arrow ");
 
 function ingredientDropdown() {
-  ingredientKeywordsSearch();
   displayKeywords(ingredientDropdownDOM);
 }
 function applianceDropdown() {
-  applianceKeywordsSearch();
   displayKeywords(applianceDropdownDOM);
 }
 function ustensilsDropdown() {
-  ustensilsKeywordsSearch();
   displayKeywords(ustensilsDropdownDOM);
 }
 
@@ -47,7 +44,6 @@ function applianceKeywordsSearch() {
         .includes(applianceSearch.value.toLocaleLowerCase())
     ) {
       applianceKeywords.push(element.appliance);
-      console.log(element.appliance);
     }
   });
 
@@ -75,17 +71,18 @@ function ustensilsKeywordsSearch() {
 }
 
 function displayKeywords(dropdown) {
-  KeywordsDOM = dropdown.querySelector(".keywords");
+  const keywordsDOM = dropdown.querySelector(".keywords");
+  const input = dropdown.querySelector("input");
 
-  while (KeywordsDOM.firstChild) {
-    KeywordsDOM.removeChild(KeywordsDOM.firstChild);
+  while (keywordsDOM.firstChild) {
+    keywordsDOM.removeChild(keywordsDOM.firstChild);
   }
 
   ingredientKeywordsSearch();
   applianceKeywordsSearch();
   ustensilsKeywordsSearch();
 
-  switch (KeywordsDOM.dataset.keywords) {
+  switch (keywordsDOM.dataset.keywords) {
     case "ingredient":
       keywords = ingredientKeywords;
 
@@ -100,46 +97,45 @@ function displayKeywords(dropdown) {
       break;
   }
 
-  console.log("KeywordsDOM", KeywordsDOM.dataset.keywords);
+  console.log("keywordsDOM", keywordsDOM.dataset.keywords);
 
-  const input = dropdown.querySelector("input");
+  keywords.forEach((element) => {
+    const keyword = document.createElement("div");
+  });
+
+  console.log("lenght", keywords.length);
 
   if (keywords.length < 11) {
-    KeywordsDOM.dataset.cols = "1";
-    KeywordsDOM.classList.remove("row", "row-cols-1", "row-cols-md-3", "g-2");
-
-    keywords.forEach((element) => {
-      const keyword = document.createElement("div");
-      keyword.addEventListener("click", function () {
-        tagAdd(keyword.textContent, keyword.parentNode.dataset.keywords);
-        keyword.parentNode.parentNode.input.value = element;
-      });
-      keyword.textContent = element;
-      KeywordsDOM.appendChild(keyword);
-    });
+    keywordsDOM.dataset.cols = "1";
+    keywordsDOM.classList.remove("row", "row-cols-1", "row-cols-md-3", "g-2");
+    keywordsDOM.classList.add("row", "row-cols-1", "row-cols-md-1", "g-2");
+    keywordsDOM.parentNode.parentNode.classList.remove("col-8");
+    keywordsDOM.parentNode.parentNode.classList.add("col-2");
   } else {
-    KeywordsDOM.dataset.cols = "3";
-    KeywordsDOM.classList.add("row", "row-cols-1", "row-cols-md-3", "g-2");
-
-    keywords.forEach((element) => {
-      const keyword = document.createElement("div");
-      keyword.addEventListener("click", function () {
-        tagAdd(keyword.textContent, keyword.parentNode.dataset.keywords);
-        console.log("TEST", input);
-
-        input.value = element;
-      });
-      keyword.textContent = element;
-      KeywordsDOM.appendChild(keyword);
-    });
+    keywordsDOM.dataset.cols = "3";
+    keywordsDOM.classList.remove("row", "row-cols-1", "row-cols-md-1", "g-2");
+    keywordsDOM.classList.add("row", "row-cols-1", "row-cols-md-3", "g-2");
   }
+
+  keywords.forEach((element) => {
+    const keyword = document.createElement("div");
+    keyword.classList.add("col");
+    keyword.addEventListener("click", function () {
+      tagAdd(keyword.textContent, keyword.parentNode.dataset.keywords);
+      search();
+      update();
+      input.value = "";
+    });
+    keyword.textContent = element;
+    keywordsDOM.appendChild(keyword);
+  });
 }
 
 function expandDropdown() {}
 
 function dropdownFocusIn(event) {
   target = event.target;
-  while (!target.classList.contains("ingredient-dropdown")) {
+  while (!target.classList.contains("dropdown")) {
     target = target.parentNode;
   }
 
@@ -156,15 +152,33 @@ function dropdownFocusIn(event) {
 
 function dropdownFocusOut(event) {
   target = event.target;
-  while (!target.classList.contains("ingredient-dropdown")) {
+  while (!target.classList.contains("dropdown")) {
     target = target.parentNode;
   }
 
   keywords = target.querySelector(".keywords");
 
-  if (keywords.dataset.cols === "3") {
-    parentNode = target.parentNode;
-    parentNode.classList.remove("col-8");
-    parentNode.classList.add("col-2");
-  }
+  parentNode = target.parentNode;
+  parentNode.classList.remove("col-8");
+  parentNode.classList.add("col-2");
+}
+
+function dropdownInputEvent() {
+  const dropdownAll = document.querySelectorAll(".dropdown");
+
+  console.log("dropdownAll", dropdownAll);
+
+  dropdownAll.forEach((e) =>
+    e.querySelector(".input").addEventListener("input", function () {
+      displayKeywords(e);
+    })
+  );
+}
+function dropdownFocusEvent() {
+  ingredientDropdownDOM.addEventListener("focusin", dropdownFocusIn);
+  ingredientDropdownDOM.addEventListener("focusout", dropdownFocusOut);
+  applianceDropdownDOM.addEventListener("focusin", dropdownFocusIn);
+  applianceDropdownDOM.addEventListener("focusout", dropdownFocusOut);
+  ustensilsDropdownDOM.addEventListener("focusin", dropdownFocusIn);
+  ustensilsDropdownDOM.addEventListener("focusout", dropdownFocusOut);
 }
