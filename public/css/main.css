@@ -151,17 +151,21 @@ nav {
   font-family: Roboto;
 }
 
+.btn .material-icons {
+  font-size: 40px;
+}
+
 .dropdowns {
   color: white;
   max-height: 30px;
 }
 
-.dropdown .input-group input {
+.dropdown .input .input-group input {
   color: white;
   border-style: none;
 }
 
-.dropdown .input-group .expand-arrow {
+.dropdown .input .input-group .expand-arrow {
   border-style: none;
   border-radius: 0.25rem;
   display: -webkit-box;
@@ -175,8 +179,24 @@ nav {
           align-items: center;
 }
 
-.dropdown .input-group .expand-arrow button {
+.dropdown .input .input-group .expand-arrow button {
   color: white;
+}
+
+.dropdown:focus-within input::-webkit-input-placeholder {
+  opacity: 0.6;
+}
+
+.dropdown:focus-within input:-ms-input-placeholder {
+  opacity: 0.6;
+}
+
+.dropdown:focus-within input::-ms-input-placeholder {
+  opacity: 0.6;
+}
+
+.dropdown:focus-within input::placeholder {
+  opacity: 0.6;
 }
 
 .ingredient .input-group * {
@@ -234,7 +254,7 @@ nav {
 }
 
 .keywords {
-  top: 40px;
+  top: 50px;
   left: 4px;
   border-style: none;
   display: none !important;
@@ -244,7 +264,7 @@ nav {
 }
 
 .keywords > * {
-  margin: 0 !important;
+  padding-left: 15px !important;
 }
 
 .tags {
@@ -253,6 +273,7 @@ nav {
   display: flex;
   gap: 20px;
   margin: 20px 0px !important;
+  margin-bottom: 0 !important;
   padding: 0 !important;
 }
 

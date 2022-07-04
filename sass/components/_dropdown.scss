@@ -4,20 +4,26 @@
 }
 
 .dropdown {
-  .input-group {
-    input {
-      color: white;
-      border-style: none;
-    }
-    .expand-arrow {
-      border-style: none;
-      border-radius: 0.25rem;
-      @include flex-center;
-      button {
+  .input {
+    .input-group {
+      input {
         color: white;
+        border-style: none;
+      }
+      .expand-arrow {
+        border-style: none;
+        border-radius: 0.25rem;
+        @include flex-center;
+        button {
+          color: white;
+        }
       }
     }
   }
+}
+
+.dropdown:focus-within input::placeholder {
+  opacity: 0.6;
 }
 
 .ingredient {
@@ -76,7 +82,7 @@
 }
 
 .keywords {
-  top: 40px;
+  top: 50px;
   left: 4px;
   border-style: none;
   display: none !important;
@@ -85,6 +91,6 @@
   z-index: 99;
 
   > * {
-    margin: 0 !important;
+    padding-left: 15px !important;
   }
 }

@@ -139,8 +139,6 @@ function dropdownFocusIn(event) {
     target = target.parentNode;
   }
 
-  console.log("target", target);
-
   keywords = target.querySelector(".keywords");
 
   if (keywords.dataset.cols === "3") {
@@ -148,6 +146,10 @@ function dropdownFocusIn(event) {
     parentNode.classList.remove("col-2");
     parentNode.classList.add("col-8");
   }
+
+  // Placeholder
+  const input = target.querySelector("input");
+  input.placeholder = input.dataset.placeholderFocus;
 }
 
 function dropdownFocusOut(event) {
@@ -161,6 +163,10 @@ function dropdownFocusOut(event) {
   parentNode = target.parentNode;
   parentNode.classList.remove("col-8");
   parentNode.classList.add("col-2");
+
+  // Placeholder
+  const input = target.querySelector("input");
+  input.placeholder = input.dataset.placeholder;
 }
 
 function dropdownInputEvent() {
