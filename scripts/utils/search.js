@@ -23,7 +23,7 @@ function stringMinLength(string, minLength) {
   if (string.length < minLength) {
     string = "";
   }
-  console.log(string.length, minLength, string);
+
   return string;
 }
 
@@ -53,7 +53,6 @@ function searchMain(recipe) {
 }
 
 function searchIngredients(searchString, recipe) {
-  // console.log("searchIngredient", searchString, recipe);
   return (
     recipe.ingredients.find((element) =>
       element.ingredient.toLowerCase().includes(searchString)
@@ -62,14 +61,12 @@ function searchIngredients(searchString, recipe) {
 }
 
 function searchAppliance(searchString, recipe) {
-  console.log("searchAppliance", searchString, recipe);
   return (
     recipe.appliance.toLowerCase().includes(searchString) || searchString === ""
   );
 }
 
 function searchUstensils(searchString, recipe) {
-  // console.log("searchUstensils", searchString, recipe);
   return (
     recipe.ustensils.find((element) =>
       element.toLowerCase().includes(searchString)
@@ -77,12 +74,8 @@ function searchUstensils(searchString, recipe) {
   );
 }
 
-
-
 function searchTags(recipe) {
   [ingredientsValue, applianceValue, ustensilsValue] = readTags();
-
-  console.log("searchTags", ingredientsValue, applianceValue, ustensilsValue);
 
   if (
     ingredientsValue.every((elem) => searchIngredients(elem, recipe)) &&

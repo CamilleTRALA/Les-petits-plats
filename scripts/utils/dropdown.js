@@ -97,13 +97,9 @@ function displayKeywords(dropdown) {
       break;
   }
 
-  console.log("keywordsDOM", keywordsDOM.dataset.keywords);
-
   keywords.forEach((element) => {
     const keyword = document.createElement("div");
   });
-
-  console.log("lenght", keywords.length);
 
   if (keywords.length < 11) {
     keywordsDOM.dataset.cols = "1";
@@ -131,8 +127,6 @@ function displayKeywords(dropdown) {
   });
 }
 
-function expandDropdown() {}
-
 function dropdownFocusIn(event) {
   target = event.target;
   while (!target.classList.contains("dropdown")) {
@@ -150,6 +144,10 @@ function dropdownFocusIn(event) {
   // Placeholder
   const input = target.querySelector("input");
   input.placeholder = input.dataset.placeholderFocus;
+
+  // Arrow icon
+  const arrow = target.querySelector(".material-symbols-outlined");
+  arrow.textContent = "expand_less";
 }
 
 function dropdownFocusOut(event) {
@@ -167,12 +165,14 @@ function dropdownFocusOut(event) {
   // Placeholder
   const input = target.querySelector("input");
   input.placeholder = input.dataset.placeholder;
+
+  // Arrow icon
+  const arrow = target.querySelector(".material-symbols-outlined");
+  arrow.textContent = "expand_more";
 }
 
 function dropdownInputEvent() {
   const dropdownAll = document.querySelectorAll(".dropdown");
-
-  console.log("dropdownAll", dropdownAll);
 
   dropdownAll.forEach((e) =>
     e.querySelector(".input").addEventListener("input", function () {

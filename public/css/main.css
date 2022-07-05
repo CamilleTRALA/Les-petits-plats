@@ -163,6 +163,7 @@ nav {
 .dropdown .input .input-group input {
   color: white;
   border-style: none;
+  font-size: 18px;
 }
 
 .dropdown .input .input-group .expand-arrow {
@@ -254,7 +255,7 @@ nav {
 }
 
 .keywords {
-  top: 50px;
+  top: 47px;
   left: 4px;
   border-style: none;
   display: none !important;
@@ -308,6 +309,7 @@ nav {
 
 .tag .cancel {
   font-size: 18px;
+  cursor: pointer;
 }
 
 /*!

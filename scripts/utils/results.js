@@ -1,10 +1,7 @@
 const resultsDOM = document.querySelector(".search-results");
 
-
-
 function displayResults() {
-  console.log("displayResults");
-  console.log(results);
+  console.log("results :", results);
 
   while (resultsDOM.firstChild) {
     resultsDOM.removeChild(resultsDOM.firstChild);
@@ -101,7 +98,3 @@ function descriptionDOM(description) {
     return string.substring(0, lastIndexOfSpace);
   }
 }
-
-
-
-
