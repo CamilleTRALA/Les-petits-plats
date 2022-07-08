@@ -10,13 +10,12 @@ let applianceValue = [];
 let ustensilsValue = [];
 
 function search() {
-  results = recipes.filter(function (element, index, array) {
-    if (searchMain(element) && searchTags(element)) {
-      return true;
-    } else {
-      return false;
+  results = [];
+  for (let i = 0; i < recipes.length; i++) {
+    if (searchMain(recipes[i]) && searchTags(recipes[i])) {
+      results.push(recipes[i]);
     }
-  });
+  }
 }
 
 function stringMinLength(string, minLength) {
