@@ -36,7 +36,7 @@ function searchDescription(searchString, recipe) {
 }
 
 function searchMain(recipe) {
-  searchString = mainSearch.value.toLocaleLowerCase();
+  let searchString = mainSearch.value.toLocaleLowerCase();
   searchString = stringMinLength(searchString, 3);
 
   let result = true;
@@ -53,11 +53,14 @@ function searchMain(recipe) {
 }
 
 function searchIngredients(searchString, recipe) {
-  return (
-    recipe.ingredients.find((element) =>
-      element.ingredient.toLowerCase().includes(searchString)
-    ) || searchString === ""
-  );
+  bool = false;
+  for (let i = 0; i < recipe.ingredients.length; i++) {
+    bool =
+      bool ||
+      recipe.ingredients[i].ingredient.toLowerCase().includes(searchString) ||
+      searchString === "";
+  }
+  return bool;
 }
 
 function searchAppliance(searchString, recipe) {
