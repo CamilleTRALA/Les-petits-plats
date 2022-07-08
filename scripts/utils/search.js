@@ -41,13 +41,14 @@ function searchMain(recipe) {
 
   let result = true;
   const subStrings = searchString.split(/[, ]+/);
-  subStrings.forEach((element) => {
+
+  for (let i = 0; i < subStrings.length; i++) {
     result =
       result &&
-      (searchTitle(element, recipe) ||
-        searchIngredients(element, recipe) ||
-        searchDescription(element, recipe));
-  });
+      (searchTitle(subStrings[i], recipe) ||
+        searchIngredients(subStrings[i], recipe) ||
+        searchDescription(subStrings[i], recipe));
+  }
 
   return result;
 }
